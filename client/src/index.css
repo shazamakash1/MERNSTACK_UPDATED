@@ -55,6 +55,16 @@ li {
   list-style: none;
 }
 
+/* toast changes */
+.toastBody {
+  font-family: Urbanist, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.7rem;
+}
+/* toast changes end */
+
+
+/* layout rules  */
+
 .container {
   max-width: 140rem;
   padding: 4rem 2.4rem;
@@ -479,3 +489,5 @@ a:active {
 }
 
 /* media query section css  end */
+
+

@@ -1,7 +1,19 @@
 import { useAuth } from "../store/auth";
 
 export const Service = () => {
-  const { services } = useAuth();
+  let { services } = useAuth();
+
+  if (!services.length > 0) {
+    services = [
+      {
+        provider: "Error",
+        price: "Error",
+        service: "Error",
+        description: "Error",
+      },
+    ];
+  }
+
   return (
     <>
       <section className="section-services">
