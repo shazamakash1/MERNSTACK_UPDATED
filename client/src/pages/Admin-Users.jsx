@@ -17,7 +17,7 @@ export const AdminUsers = () => {
       });
 
       const data = await response.json();
-      console.log("Data in Admin Users-> ", data);
+      // console.log("Data in Admin Users-> ", data);
       setUsers(data);
     } catch (error) {
       console.log(error);

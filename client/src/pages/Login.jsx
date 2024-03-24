@@ -39,7 +39,7 @@ export const Login = () => {
         body: JSON.stringify(user),
       });
 
-      console.log("Login Reponse-> " + response);
+      // console.log("Login Reponse-> " + response);
       const res_data = await response.json();
       if (response.ok) {
         toast.success("Login Success");

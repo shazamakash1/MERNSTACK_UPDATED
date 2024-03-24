@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   let isLoggedIn = !!token; //if token exist then true else false
 
-  console.log("Is Logged in -> ", isLoggedIn);
+  // console.log("Is Logged in -> ", isLoggedIn);
 
   //tackle the logout
 
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setServices(data.msg);
-        console.log(data.msg);
+        // console.log(data.msg);
       }
     } catch (error) {
       console.log(`Services frontend Error: ${error}`);

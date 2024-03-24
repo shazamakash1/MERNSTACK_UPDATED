@@ -47,8 +47,8 @@ export const Register = () => {
 
       
       const res_data = await response.json();
-      console.log(res_data.message);
-      console.log(res_data.extraDetails);
+      // console.log(res_data.message);
+      // console.log(res_data.extraDetails);
 
       if (response.ok) {
         storeToken(res_data.token);
@@ -61,7 +61,7 @@ export const Register = () => {
 
         
     } catch (error) {
-      console.log("Register error -> " + error);
+      toast.error("Register error -> " + error);
     }
   };
 
