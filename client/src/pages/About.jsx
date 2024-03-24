@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { Analytics } from "../components/Analytics";
+import { useAuth } from "../store/auth";
 
 export const About = () => {
+  const { user } = useAuth();
+
+  // if(useAuth()){
+  //   {userName} = useAuth();
+  // }
   return (
     <>
       <main>
@@ -9,7 +15,7 @@ export const About = () => {
           <div className="section-hero">
             <div className="container grid grid-two-cols">
               <div className="hero-content">
-                <p>Welcome. Akash Sites</p>
+                <p>Welcome, {user ? user.username : `to our Website`}!</p>
                 <h1>Why Choose Us?</h1>
                 <p>
                   Expertise: Our team consists of experienced IT professionals
