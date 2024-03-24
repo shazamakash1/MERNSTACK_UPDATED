@@ -3,11 +3,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const AuthContext = createContext();
 
 const URL = "http://localhost:5000/api/auth/user";
+const serviceURL = "http://localhost:5000/api/data/service";
 
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  const [services, setServices] = useState("");
   const storeToken = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
@@ -42,19 +44,41 @@ export const AuthProvider = ({ children }) => {
       console.log("Error Fetching Data ", error);
     }
   };
+
+  //to fetch the services data from the db
+  const getServices = async () => {
+    try {
+      const response = await fetch(serviceURL, {
+        method: "GET",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setServices(data.msg);
+        console.log(data.msg);
+      }
+    } catch (error) {
+      console.log(`Services frontend Error: ${error}`);
+    }
+  };
+
   useEffect(() => {
+    getServices();
     userAuthentication();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ storeToken, LogoutUser, isLoggedIn, user }}>
+    <AuthContext.Provider
+      value={{ storeToken, LogoutUser, 
+        isLoggedIn, user, services }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => {
+export const  useAuth = () => {
   const authCountextvalue = useContext(AuthContext);
 
   if (!authCountextvalue) {
