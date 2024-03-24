@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
   const [services, setServices] = useState("");
+  const authorizationToken = `Bearer ${token}`;
   const storeToken = (serverToken) => {
     setToken(serverToken);
     return localStorage.setItem("token", serverToken);
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch(URL, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: authorizationToken,
         },
       });
       if (response.ok) {
@@ -70,8 +71,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ storeToken, LogoutUser, 
-        isLoggedIn, user, services }}
+      value={{
+        storeToken,
+        LogoutUser,
+        isLoggedIn,
+        user,
+        services,
+        authorizationToken,
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -79,7 +86,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const  useAuth = () => {
+export const useAuth = () => {
   const authCountextvalue = useContext(AuthContext);
 
   if (!authCountextvalue) {
