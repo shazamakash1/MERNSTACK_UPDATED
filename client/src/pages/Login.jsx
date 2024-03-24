@@ -39,19 +39,16 @@ export const Login = () => {
       });
 
       console.log("Login Reponse-> " + response);
-
+      const res_data = await response.json();
       if (response.ok) {
         alert("Login Success");
-
-        const res_data = await response.json();
         storeToken(res_data.token);
         // localStorage.setItem("token",res_data.token);
 
         setUser({ email: "", password: "" });
         navigate("/");
       } else {
-        alert("Invalid Credential");
-        console.log("Invalid Credential");
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
     } catch (error) {
       console.log(error);

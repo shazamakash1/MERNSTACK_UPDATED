@@ -24,7 +24,7 @@ const register = async (req, res) => {
     const userExist = await User.findOne({ email });
 
     if (userExist) {
-      return res.status(400).json({ msg: "Email already Exist" });
+      return res.status(400).json({ message: "Email already Exist" });
     }
 
     // //hash the password
@@ -62,7 +62,7 @@ const login = async (req, res) => {
     console.log(userExist);
 
     if (!userExist) {
-      return res.status(400).json({ message: "Invalid Credentials" });
+      return res.status(400).json({ message: "Invalid Creds" });
     }
 
     //compare password
@@ -91,7 +91,7 @@ const user = async (req, res) => {
   try {
     const userData = req.user;
     console.log(userData);
-    return res.status(200).json({userData});
+    return res.status(200).json({ userData });
   } catch (error) {
     console.log(`error from the user root ${error}`);
   }
