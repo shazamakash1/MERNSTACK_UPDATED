@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
@@ -9,13 +9,15 @@ import { Navbar } from "./components/Navbar";
 import { Error } from "./pages/Error";
 import { Footer } from "./components/Footer/Footer";
 import { Logout } from "./pages/Logout";
+import { AdminLayout } from "./components/layouts/Admin-Layout";
+import { AdminContacts } from "./pages/Admin-Contacts";
+import { AdminUsers } from "./pages/Admin-Users";
 
-
-const App = () =>{
+const App = () => {
   return (
     <>
       <BrowserRouter>
-      <Navbar />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -25,6 +27,14 @@ const App = () =>{
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
+
+          {/* nested route  */}
+
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="users" element ={<AdminUsers />}/>
+            <Route path="contact" element ={<AdminContacts/>}/>
+          </Route>
+          {/* nested route end */}
         </Routes>
         <Footer />
       </BrowserRouter>
