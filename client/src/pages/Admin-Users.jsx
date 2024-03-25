@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const URL = "http://localhost:5000/api/admin/users";
 export const AdminUsers = () => {
@@ -26,16 +27,13 @@ export const AdminUsers = () => {
   };
 
   //delete the user fron given id
-  const deleteUser = async (curUser) => {
+  const deleteUser = async (id) => {
     try {
-      console.log("curUser -? ", curUser);
-      console.log("LoggedUser -? ", user);
-
-      if (curUser._id == user._id) {
+      if (id == user._id) {
         toast.error("Logged in User Cannot be Deleted");
       } else {
         const response = await fetch(
-          `http://localhost:5000/api/admin/users/delete/${curUser._id}`,
+          `http://localhost:5000/api/admin/users/delete/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -84,9 +82,11 @@ export const AdminUsers = () => {
                     <td>{curUser.username}</td>
                     <td>{curUser.email}</td>
                     <td>{curUser.phone}</td>
-                    <td>Edit</td>
                     <td>
-                      <button onClick={() => deleteUser(curUser)}>
+                      <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                    </td>
+                    <td>
+                      <button onClick={() => deleteUser(curUser._id)}>
                         Delete
                       </button>
                     </td>
