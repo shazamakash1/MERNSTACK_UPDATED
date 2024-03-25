@@ -12,6 +12,7 @@ import { Logout } from "./pages/Logout";
 import { AdminLayout } from "./components/layouts/Admin-Layout";
 import { AdminContacts } from "./pages/Admin-Contacts";
 import { AdminUsers } from "./pages/Admin-Users";
+import { AdminUpdate } from "./pages/Admin-Update";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="users" element ={<AdminUsers />}/>
             <Route path="contact" element ={<AdminContacts/>}/>
+            <Route path="users/:id/edit" element={<AdminUpdate />} />
           </Route>
           {/* nested route end */}
         </Routes>
