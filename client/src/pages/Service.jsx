@@ -1,20 +1,20 @@
 import { useAuth } from "../store/auth";
 
 export const Service = () => {
-  let { services } = useAuth();
+  const { services } = useAuth();
 
-  console.log(services);
+  // console.log(services);
 
-  if (isNaN(services) || services.length==0) {
-    services = [
-      {
-        provider: "Test provider",
-        price: "Test Price",
-        service: "Test service",
-        description: "Test description",
-      },
-    ];
-  }
+  // if (isNaN(services) || services.length==0) {
+  //   services = [
+  //     {
+  //       provider: "Test provider",
+  //       price: "Test Price",
+  //       service: "Test service",
+  //       description: "Test description",
+  //     },
+  //   ];
+  // }
 
   return (
     <>

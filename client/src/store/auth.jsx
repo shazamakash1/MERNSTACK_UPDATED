@@ -60,8 +60,8 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        setServices(data.msg);
-        // console.log(data.msg);
+        setServices(data.message);
+        
       }
     } catch (error) {
       console.log(`Services frontend Error: ${error}`);
