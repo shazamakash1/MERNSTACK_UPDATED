@@ -17,8 +17,8 @@ const adminRoute = require("./router/admin-router");
 // };
 
 const corsOptions = {
-    origin: "https://mern-akash.vercel.app",
-    methods:"GET,POST,PUT,DELETE,PATCH,HEAD",
+    origin: ["https://mern-akash.vercel.app"],
+    methods:["GET,POST,PUT,DELETE,PATCH,HEAD"],
     credentials:true,
 };
 
