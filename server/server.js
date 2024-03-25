@@ -10,17 +10,17 @@ const errorMiddleware = require('./middlewares/error-middleware');
 const adminRoute = require("./router/admin-router");
 //implementing CORS - handling the issue
 
-// const corsOptions = {
-//     origin: process.env.FRONTEND_ORIGIN,
-//     methods:"GET,POST,PUT,DELETE,PATCH,HEAD",
-//     credentials:true,
-// };
-
 const corsOptions = {
-    origin: ["https://mern-akash.vercel.app"],
-    methods:["GET,POST,PUT,DELETE,PATCH,HEAD"],
+    origin: process.env.FRONTEND_ORIGIN,
+    methods:"GET,POST,PUT,DELETE,PATCH,HEAD",
     credentials:true,
 };
+
+// const corsOptions = {
+//     origin: ["https://mern-akash.vercel.app"],
+//     methods:["GET,POST,PUT,DELETE,PATCH,HEAD"],
+//     credentials:true,
+// };
 
 app.use(cors(corsOptions));
 
