@@ -25,6 +25,29 @@ export const AdminContacts = () => {
     }
   };
 
+  //delete the contact by user id
+
+  const deleteContactById = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/contacts/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Contact Deleted");
+        getContactsData();
+      } else toast.error("Contact Deletion Failed");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getContactsData();
   }, []);
@@ -47,14 +70,19 @@ export const AdminContacts = () => {
             </thead>
             <tbody>
               {contactData.map((currContactData, index) => {
-                const { username, email, message } = currContactData;
+                const { username, email, message, _id } = currContactData;
                 return (
                   <tr key={index}>
                     <td>{username}</td>
                     <td>{email}</td>
                     <td>{message}</td>
                     <td>
-                      <button>Delete</button>
+                      <button
+                        className="btn"
+                        onClick={() => deleteContactById(_id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 );
