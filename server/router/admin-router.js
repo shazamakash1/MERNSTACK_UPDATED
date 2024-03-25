@@ -8,10 +8,14 @@ router
   .route("/users")
   .get(authMiddleware, adminMiddleware, adminController.getAllUsers);
 
-  router
+router
   .route("/users/:id")
   .get(authMiddleware, adminMiddleware, adminController.getUserById);
+
   router
+  .route("/users/update/:id")
+  .patch(authMiddleware,adminMiddleware,adminController.updateUserById)
+router
   .route("/contacts")
   .get(authMiddleware, adminMiddleware, adminController.getAllContacts);
 

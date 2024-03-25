@@ -46,4 +46,28 @@ const getUserById = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
+const updateUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateUserData = req.body;
+
+    const updatedData = await User.updateOne(
+      { _id: id },
+      {
+        $ser: updateUserData,
+      }
+    );
+
+    return res.status(200).json(updatedData);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getAllContacts,
+  deleteUserById,
+  getUserById,
+  updateUserById,
+};
