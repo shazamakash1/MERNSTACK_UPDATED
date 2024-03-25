@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 
-const URL = "http://localhost:5000/api/form/contact";
+
 
 const defaultContactFormData = {
   username: "",
@@ -16,7 +16,7 @@ export const Contact = () => {
 
   const [userData, setUserData] = useState(true);
 
-  const { user } = useAuth();
+  const { user, API } = useAuth();
 
   if (userData && user) {
     setContact({
@@ -49,7 +49,7 @@ export const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${API}/api/form/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,10 +61,10 @@ export const Contact = () => {
         setContact(defaultContactFormData);
         const data = await response.json();
         // console.log("JSON Data -> ",data);
-        toast.success('Message Send Successfully');
+        toast.success("Message Send Successfully");
       }
     } catch (error) {
-      toast.error('Message Not send');
+      toast.error("Message Not send");
     }
   };
 

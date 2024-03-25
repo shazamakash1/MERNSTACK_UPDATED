@@ -3,15 +3,15 @@ import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-const URL = "http://localhost:5000/api/admin/users";
+
 export const AdminUsers = () => {
   const [users, setUsers] = useState([]);
 
-  const { authorizationToken, user } = useAuth();
+  const { authorizationToken, user ,API } = useAuth();
 
   const getAllUsersData = async () => {
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${API}/api/admin/users`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -33,7 +33,7 @@ export const AdminUsers = () => {
         toast.error("Logged in User Cannot be Deleted");
       } else {
         const response = await fetch(
-          `http://localhost:5000/api/admin/users/delete/${id}`,
+          `${API}/api/admin/users/delete/${id}`,
           {
             method: "DELETE",
             headers: {

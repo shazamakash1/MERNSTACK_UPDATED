@@ -11,21 +11,18 @@ export const AdminUpdate = () => {
   });
 
   const params = useParams();
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, API } = useAuth();
 
   //get single user data
 
   const getSingleUserData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/users/${params.id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/api/admin/users/${params.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const data = await response.json();
       console.log(`Single User data:-> ${data}`);
       setData(data);
@@ -62,7 +59,7 @@ export const AdminUpdate = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        `${API}/api/admin/users/update/${params.id}`,
         {
           method: "PATCH",
           headers: {
