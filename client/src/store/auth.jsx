@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const AuthContext = createContext();
 
 const URL = "http://localhost:5000/api/auth/user";
-const serviceURL = "http://localhost:5000/api/data/service";
 
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
@@ -51,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   //to fetch the services data from the db
   const getServices = async () => {
     try {
-      const response = await fetch(serviceURL, {
+      const response = await fetch("http://localhost:5000/api/data/service", {
         method: "GET",
       });
 
@@ -86,7 +85,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const authCountextvalue = useContext(AuthContext);
 
