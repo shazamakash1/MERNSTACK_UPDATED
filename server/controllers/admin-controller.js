@@ -54,7 +54,7 @@ const updateUserById = async (req, res) => {
     const updatedData = await User.updateOne(
       { _id: id },
       {
-        $ser: updateUserData,
+        $set: updateUserData,
       }
     );
 
