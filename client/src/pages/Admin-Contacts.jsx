@@ -31,22 +31,36 @@ export const AdminContacts = () => {
 
   return (
     <>
-      <section className="admin-users-section">
+      <section className="admin-contacts-section">
         <div className="container">
           <h1>Admin Contact Data</h1>
         </div>
-        <div className="container admin-users">
-          {contactData.map((currContactData, index) => {
-            const { username, email, message } = currContactData;
-            return (
-              <div key={index}>
-                <p>{username}</p>
-                <p>{email}</p>
-                <p>{message}</p>
-                <button className="btn">Delete</button>
-              </div>
-            );
-          })}
+        <div className="container admin-contacts">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contactData.map((currContactData, index) => {
+                const { username, email, message } = currContactData;
+                return (
+                  <tr key={index}>
+                    <td>{username}</td>
+                    <td>{email}</td>
+                    <td>{message}</td>
+                    <td>
+                      <button>Delete</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </section>
     </>

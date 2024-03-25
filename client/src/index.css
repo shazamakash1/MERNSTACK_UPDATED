@@ -475,7 +475,8 @@ table {
   box-shadow: 0 0.3rem 0 gray;
   margin-bottom: 10px;
   border-bottom: 4px solid transparent;
-  color: var(--bg-color);
+  color: var(--dark-color);
+  font-size: 1.7rem;
 
   &:last-child {
     box-shadow: none;
@@ -486,10 +487,11 @@ body tr {
   display: grid;
   grid-template-columns: repeat(5, minmax(10rem, 1fr));
   align-items: center;
-  box-shadow: 0 0.3rem 0 grey;
+  box-shadow: 0 0.3rem 0 gray;
   margin-bottom: 10px;
   border-bottom: 4px solid transparent;
-  color: var(--bg-color);
+  color: var(--dark-color);
+  font-size: 1.7rem;
 
   &:last-child {
     box-shadow: none;
