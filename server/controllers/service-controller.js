@@ -9,7 +9,7 @@ const services = async (req, res) => {
       return;
     } else res.status(200).json({ message: response });
   } catch (error) {
-    console.log(`Services error : ${error}`);
+    next(error);
   }
 };
 
