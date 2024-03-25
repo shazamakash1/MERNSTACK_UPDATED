@@ -19,9 +19,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 //pls comment
-app.get("/",(req,res)=>{
-    res.json("Hello");
-});
+// app.get("/",(req,res)=>{
+//     res.json("Hello");
+// });
 //pls comment
 
 app.use(express.json()); //adds an express middleware, will handle json request body
