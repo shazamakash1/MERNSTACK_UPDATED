@@ -8,7 +8,7 @@ const URL = "http://localhost:5000/api/auth/user";
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
-  const [services, setServices] = useState("");
+  const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const authorizationToken = `Bearer ${token}`;
