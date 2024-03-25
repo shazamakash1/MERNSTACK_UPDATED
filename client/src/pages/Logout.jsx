@@ -10,6 +10,6 @@ export const Logout = () => {
   useEffect(() => {
     LogoutUser();
   }, [LogoutUser]);
-
+  // window.location.reload();
   return <Navigate to ="/login" />;
 };

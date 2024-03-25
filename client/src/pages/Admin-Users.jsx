@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const URL = "http://localhost:5000/api/admin/users";
 export const AdminUsers = () => {
   const [users, setUsers] = useState([]);
 
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, user } = useAuth();
 
   const getAllUsersData = async () => {
     try {
@@ -20,6 +21,38 @@ export const AdminUsers = () => {
       // console.log("Data in Admin Users-> ", data);
       setUsers(data);
     } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //delete the user fron given id
+  const deleteUser = async (curUser) => {
+    try {
+      console.log("curUser -? ", curUser);
+      console.log("LoggedUser -? ", user);
+
+      if (curUser._id == user._id) {
+        toast.error("Logged in User Cannot be Deleted");
+      } else {
+        const response = await fetch(
+          `http://localhost:5000/api/admin/users/delete/${curUser._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: authorizationToken,
+            },
+          }
+        );
+        const data = await response.json();
+        console.log(`Users after Delete:-> ${data}`);
+
+        if (response.ok) {
+          toast.success("User Deleted");
+          getAllUsersData();
+        }
+      }
+    } catch (error) {
+      toast.error("User Deletion Unsuccessful");
       console.log(error);
     }
   };
@@ -46,13 +79,19 @@ export const AdminUsers = () => {
             </thead>
             <tbody>
               {users.map((curUser, index) => {
-                return <tr key={index}>
+                return (
+                  <tr key={index}>
                     <td>{curUser.username}</td>
                     <td>{curUser.email}</td>
                     <td>{curUser.phone}</td>
                     <td>Edit</td>
-                    <td>Delete</td>
-                </tr>;
+                    <td>
+                      <button onClick={() => deleteUser(curUser)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>

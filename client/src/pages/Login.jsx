@@ -42,15 +42,17 @@ export const Login = () => {
       // console.log("Login Reponse-> " + response);
       const res_data = await response.json();
       if (response.ok) {
-        toast.success("Login Success");
         storeToken(res_data.token);
         // localStorage.setItem("token",res_data.token);
 
         setUser({ email: "", password: "" });
         navigate("/");
-        
+        window.location.reload();
+        toast.success("Login Success");
       } else {
-        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (error) {
       console.log(error);
