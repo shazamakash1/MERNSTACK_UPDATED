@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }) => {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
+          'Access-Control-Allow-Origin':'no-cors',
         },
       });
       if (response.ok) {
