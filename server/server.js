@@ -24,6 +24,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use("/",(req,res)=>{
+  res.send("Server is Running");
+});
+
 //pls comment
 // app.get("/",(req,res)=>{
 //     res.json("Hello");
