@@ -16,6 +16,8 @@ export const AuthProvider = ({ children }) => {
     return localStorage.setItem("token", serverToken);
   };
 
+  console.log(`Comment`);
+
   let isLoggedIn = !!token; //if token exist then true else false
 
   // console.log("Is Logged in -> ", isLoggedIn);
