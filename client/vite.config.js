@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server:{
     proxy:{
-      '/api':'https://mern-akash-server.vercel.app',
+      '/api':import.meta.env.VITE_APP_URI_API,
     }
 
   },
