@@ -2,8 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-
-
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -34,14 +32,12 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     try {
-
-      console.log(`API->`,API);
+      console.log(`API->`, API);
       setIsLoading(true);
       const response = await fetch(`${API}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
-          'Access-Control-Allow-Origin':"null",
         },
       });
       if (response.ok) {
